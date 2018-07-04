@@ -12,19 +12,8 @@ button.appendChild(buttonText);
 binary.appendChild(button);
 button.classList.add('button');
 
-
-//CSS styles
-const style = document.createElement('STYLE');
-const binaryModuleStyle = document.createTextNode('.binarymodule {height: 50vh; position: relative; background-color: black; color: green; padding: 10px}');
-const textAreaStyle = document.createTextNode('.console {width: 100%; height: 100%; background-color: black; color: green; border: none; outline: none; resize: none}');
-const buttonStyle = document.createTextNode('.button {position: absolute; bottom: 30px; right: 30px; background-color: white; font-size: 1em; padding: 0.5em; border: 2px solid gray; border-radius: 3px}');
-
+//autofocus on load
 textarea.autofocus = "true";
-
-style.appendChild(binaryModuleStyle); 
-style.appendChild(textAreaStyle);
-style.appendChild(buttonStyle);
-document.head.appendChild(style);
 
 //checks textarea to see if user has properly typed in answer
 function checkAnswer(){
@@ -41,12 +30,14 @@ function checkAnswer(){
 }
 button.addEventListener('click', checkAnswer);
 window.addEventListener('keyup', function(){
+    //if selected
     if (document.activeElement == textarea && event.which == 13){
-        //NOTE: remove new character that is created on enter press
+        //BUG: two new return characters created on enter press
         checkAnswer();
     }
 });
 
+//object to dymanically create binary key
 let keyboard = [
     {
         letter: 'space',
@@ -55,15 +46,15 @@ let keyboard = [
     {
         letter: 'A',
         binary: '01000001'
-    }, 
-    { 
+    },
+    {
         letter: 'B',
         binary: '01000010'
     },
     {
         letter: 'C',
         binary: '01000011'
-    }, 
+    },
     {
         letter: 'D',
         binary: '01000100'
@@ -87,7 +78,7 @@ let keyboard = [
     {
         letter: 'I',
         binary: '01001001'
-    }, 
+    },
     {
         letter: 'J',
         binary: '01001010'
@@ -111,7 +102,7 @@ let keyboard = [
     {
         letter: 'O',
         binary: '01001111'
-    }, 
+    },
     {
         letter: 'P',
         binary: '01010000'
@@ -127,11 +118,11 @@ let keyboard = [
     {
         letter: 'S',
         binary: '01010011'
-    }, 
+    },
     {
         letter: 'T',
         binary: '01010100'
-    }, 
+    },
     {
         letter: 'U',
         binary: '01010101'
@@ -139,7 +130,7 @@ let keyboard = [
     {
         letter: 'V',
         binary: '01010110'
-    }, 
+    },
     {
         letter: 'W',
         binary: '01010111'
@@ -147,7 +138,7 @@ let keyboard = [
     {
         letter: 'X',
         binary: '01011000'
-    }, 
+    },
     {
         letter: 'Y',
         binary: '01011001'
@@ -191,7 +182,7 @@ let keyboard = [
     {
         letter: 'i',
         binary: '01101001'
-    }, 
+    },
     {
         letter: 'j',
         binary: '01101010'
@@ -215,7 +206,7 @@ let keyboard = [
     {
         letter: 'o',
         binary: '01101111'
-    }, 
+    },
     {
         letter: 'p',
         binary: '01110000'
@@ -239,7 +230,7 @@ let keyboard = [
     {
         letter: 'u',
         binary: '01110101'
-    }, 
+    },
     {
         letter: 'v',
         binary: '01110110'
@@ -264,6 +255,20 @@ let keyboard = [
 
 const binarykey = document.getElementById('binarykey');
 const ul = document.createElement('UL');
+const keyButton = document.createElement('BUTTON');
+const keyButtonText = document.createTextNode('Binary Key');
+
+keyButton.appendChild(keyButtonText);
+binary.appendChild(keyButton);
+keyButton.classList.add('button', 'keybutton');
+keyButton.addEventListener('click', function(){
+  const ascii = document.getElementsByClassName('ASCII')[0];
+  if (ascii.style.display === 'grid'){
+    ascii.style.display = 'none';
+  } else {
+    ascii.style.display = 'grid';
+  }
+})
 
 binarykey.appendChild(ul);
 ul.classList.add('list-reset', 'ASCII');
@@ -271,7 +276,7 @@ ul.classList.add('list-reset', 'ASCII');
 keyboard.forEach(function(key){
     let content = document.createTextNode(`${key.letter} = ${key.binary}`);
     const li = document.createElement('LI');
-    
+
     ul.appendChild(li);
     li.appendChild(content);
 });
