@@ -12,12 +12,15 @@ button.appendChild(buttonText);
 binary.appendChild(button);
 button.classList.add('button');
 
+const mq = window.matchMedia("(orientation: landscape)");
+if (mq.matches){
+    textarea.autofocus = "true";
+} 
 //autofocus on load
-textarea.autofocus = "true";
 
 //checks textarea to see if user has properly typed in answer
 function checkAnswer(){
-    //const answer = "01001000 01100101 01101100 01101100 01101111 00100000 01010111 01101111 01110010 01101100 01100100";
+    //const answer = "01001000 01100101 01101100 01101100 01101111 00100000 01010111 01101111 01110010 01101100 01100100"; //Hello World
     const answer = "01001000 01100101 01101100 01101100 01101111";
     //NOTE: make line break compatible across apple and linux
     if (textarea.value.includes(answer)){
@@ -25,7 +28,6 @@ function checkAnswer(){
         textarea.value += '\nHello';
     } else {
         textarea.value += '\nNot quite, try again!\n'
-        textarea.focus();
     }
 }
 button.addEventListener('click', checkAnswer);
@@ -37,7 +39,7 @@ window.addEventListener('keyup', function(){
     }
 });
 
-//object to dymanically create binary key
+//object to dynamically create binary key
 let keyboard = [
     {
         letter: 'space',
@@ -279,6 +281,9 @@ keyboard.forEach(function(key){
 
     ul.appendChild(li);
     li.appendChild(content);
+    li.addEventListener('click', function(){
+        textarea.value += `${key.binary} `;
+    });
 });
 
 
