@@ -60,9 +60,12 @@
     font-size: 1.3em;
 }
 
-.ASCII li:hover, .ASCII li:active {
+@media (hover: hover) {
+.ASCII li:hover, .ASCII li:active, .ASCII li:focus {
     background-color: lightgray;
     border: 1px solid gray;
+}
+
 }
 
 @media only screen and (max-width: 650px) {
