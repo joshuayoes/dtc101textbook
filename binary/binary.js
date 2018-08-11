@@ -6,18 +6,22 @@ const textarea = document.createElement("TEXTAREA");
 binary.appendChild(textarea);
 textarea.classList.add('console');
 
+//checks screen orientation on load to determine if mobile or desktop
+const mq = window.matchMedia("(orientation: landscape)");
+if (mq.matches){
+    textarea.autofocus = "true";
+} 
+
+//validate button
 const button = document.createElement('BUTTON');
 const buttonText = document.createTextNode('Validate');
 button.appendChild(buttonText);
 binary.appendChild(button);
-button.classList.add('button');
-
-//autofocus on load
-textarea.autofocus = "true";
+button.classList.add('button', 'validatebutton');
 
 //checks textarea to see if user has properly typed in answer
 function checkAnswer(){
-    //const answer = "01001000 01100101 01101100 01101100 01101111 00100000 01010111 01101111 01110010 01101100 01100100";
+    //const answer = "01001000 01100101 01101100 01101100 01101111 00100000 01010111 01101111 01110010 01101100 01100100"; //Hello World
     const answer = "01001000 01100101 01101100 01101100 01101111";
     //NOTE: make line break compatible across apple and linux
     if (textarea.value.includes(answer)){
@@ -25,19 +29,43 @@ function checkAnswer(){
         textarea.value += '\nHello';
     } else {
         textarea.value += '\nNot quite, try again!\n'
-        textarea.focus();
     }
 }
 button.addEventListener('click', checkAnswer);
 window.addEventListener('keyup', function(){
-    //if selected
+    //if text area is selected and user hits enter key
     if (document.activeElement == textarea && event.which == 13){
         //BUG: two new return characters created on enter press
         checkAnswer();
     }
 });
 
-//object to dymanically create binary key
+//binary key toggle button
+const keyButton = document.createElement('BUTTON');
+const keyButtonText = document.createTextNode('Binary Key');
+keyButton.appendChild(keyButtonText);
+binary.appendChild(keyButton);
+keyButton.classList.add('button', 'keybutton');
+keyButton.addEventListener('click', function(){
+  const ascii = document.getElementsByClassName('ASCII')[0];
+  if (ascii.style.display === 'grid'){
+    ascii.style.display = 'none';
+  } else {
+    ascii.style.display = 'grid';
+  }
+});
+
+//clear button
+const clearButton = document.createElement('BUTTON');
+const clearButtonText = document.createTextNode('Clear');
+clearButton.appendChild(clearButtonText);
+binary.appendChild(clearButton);
+clearButton.classList.add('button', 'clearbutton');
+clearButton.addEventListener('click', function(){
+   textarea.value = ""; 
+});
+
+//object to dynamically create binary key
 let keyboard = [
     {
         letter: 'space',
@@ -255,20 +283,6 @@ let keyboard = [
 
 const binarykey = document.getElementById('binarykey');
 const ul = document.createElement('UL');
-const keyButton = document.createElement('BUTTON');
-const keyButtonText = document.createTextNode('Binary Key');
-
-keyButton.appendChild(keyButtonText);
-binary.appendChild(keyButton);
-keyButton.classList.add('button', 'keybutton');
-keyButton.addEventListener('click', function(){
-  const ascii = document.getElementsByClassName('ASCII')[0];
-  if (ascii.style.display === 'grid'){
-    ascii.style.display = 'none';
-  } else {
-    ascii.style.display = 'grid';
-  }
-})
 
 binarykey.appendChild(ul);
 ul.classList.add('list-reset', 'ASCII');
@@ -279,6 +293,9 @@ keyboard.forEach(function(key){
 
     ul.appendChild(li);
     li.appendChild(content);
+    li.addEventListener('click', function(){
+        textarea.value += `${key.binary} `;
+    });
 });
 
 
