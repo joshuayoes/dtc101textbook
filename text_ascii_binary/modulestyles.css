@@ -1,0 +1,31 @@
+.text-ascii-binary_container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 200px 300px;
+}
+
+.textmodule, .asciimodule, .binarymodule {
+  resize: none;
+  font-size: 1.3em;
+  border: 1px solid #B9B6B5;
+  margin: 10px 0;
+  padding: 5px;
+  border-radius: 5px;
+  overflow: auto;
+}
+
+.textmodule {
+  background: url(img/text.svg) center center no-repeat;
+  min-height: 3em;
+}
+
+.asciimodule {
+  background: url(img/ascii.svg) center center no-repeat;
+  background-color: #E6E0DE;
+}
+
+.binarymodule {
+  background: url(img/binary.svg) center center no-repeat;
+  color: #74D33E;
+  background-color: #241D1C;
+}
