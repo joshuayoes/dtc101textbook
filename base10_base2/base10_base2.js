@@ -26,8 +26,10 @@ const baseCounting = document.createElement('p');
 //set input attributes
 diagram.setAttribute('src', 'img/number_diagram.svg')
 diagram.setAttribute('alt', 'Diagram visualizing difference between base 2 and base 10 counting')
-numField.setAttribute('type', 'number');
-binaryField.setAttribute('type', 'number');
+numField.setAttribute('type', 'text');
+binaryField.setAttribute('type', 'text');
+numField.setAttribute('pattern', '[0-9]/g');
+binaryField.setAttribute('pattern', '[0-9]/g');
 numField.setAttribute('value', '4');
 binaryField.setAttribute('value', '100');
 binaryField.setAttribute('readonly','readonly');
@@ -53,4 +55,22 @@ numField.addEventListener('input', function(event){
   let num = this.value;
   //converts base 10 number into binary
   binaryField.value = parseInt(num).toString(2);
+});
+
+const base10value = document.getElementsByClassName('base10value')[0];
+const base2value = document.getElementsByClassName('base2num')[0];
+const buttonUp = document.getElementsByClassName('buttonup')[0];
+const buttonDown = document.getElementsByClassName('buttondown')[0];
+const
+
+base10value.innerText = '10'
+
+buttonUp.addEventListener('click', () => {
+  base10value.innerText++;
+  base2value.innerText = parseInt(base10value.innerText).toString(2);
+});
+
+buttonDown.addEventListener('click', () => {
+  base10value.innerText--;
+  base2value.innerText = parseInt(base10value.innerText).toString(2);
 });
