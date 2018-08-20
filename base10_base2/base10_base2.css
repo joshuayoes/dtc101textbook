@@ -35,38 +35,3 @@ input {
   background-color: black;
   color: green;
 }
-
-.base10num, .base2num {
-  border: 1px solid black;
-  height: 1.5em;
-  font-size: 3em;
-}
-
-.base10num {
-  position: relative;
-}
-
-.base10num img {
-  position: absolute;
-  height: 0.3em;
-  padding: 7px;
-}
-
-.base10num img:hover {
-  background-color: lightgray;
-}
-
-.base10value {
-  height: 100%;
-  width: 100%;
-}
-
-.buttonup {
-  top: 0px;
-  right: 0px;
-}
-
-.buttondown {
-  bottom: 0px;
-  right: 0px;
-}
