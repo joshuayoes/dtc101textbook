@@ -7,12 +7,12 @@
 //for this modules stylesheet and a diagram
 //change these paths as needed
 const binaryLinkPath = {
-  stylesheet: 'base10_base2.css',
+  stylesheet: 'base10-base2.css',
   diagram: 'img/number_diagram.svg'
 }
 
 //links everything to root div
-const base10Base2 = document.getElementsByClassName('base10_base2')[0];
+const base10Base2 = document.getElementsByClassName('base10-base2')[0];
 
 //creates link to stylesheet module and appends to head
 const cssLink = document.createElement('link');
