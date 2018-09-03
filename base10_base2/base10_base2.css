@@ -24,7 +24,7 @@ h2 {
   margin: 0;
 }
 
-input {
+form input {
   font-family: 'Roboto Mono', monospace;
   font-size: 3em;
   padding: 5px;

@@ -1,4 +1,4 @@
-.text-ascii-binary_container {
+.text-ascii-binary {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 200px 300px;

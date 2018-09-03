@@ -5,7 +5,11 @@
 
 //this script has static file paths
 //for the module background images and a stylesheet
-//if you need to change them ctrl-f "PATH" to find all instances of file paths
+//change these paths as needed
+const converterLinkPath = {
+  stylesheet: 'text-ascii-binary.css',
+  backgroundImages: ['img/text.svg', 'img/ascii.svg', 'img/binary.svg']
+}
 
 //create modules
 const createTextModule = document.createElement('div');
@@ -19,7 +23,7 @@ createAsciiModule.readOnly = 'true';
 createBinaryModule.readOnly = 'true';
 
 //place modules inside of container div
-const converterContainer = document.getElementsByClassName('text-ascii-binary_container')[0];
+const converterContainer = document.getElementsByClassName('text-ascii-binary')[0];
 converterContainer.appendChild(createTextModule);
 converterContainer.appendChild(createAsciiModule);
 converterContainer.appendChild(createBinaryModule);
@@ -28,7 +32,7 @@ converterContainer.appendChild(createBinaryModule);
 const styleSheet = document.createElement('link');
 styleSheet.type = 'text/css';
 styleSheet.rel = 'stylesheet';
-styleSheet.href = 'modulestyles.css'; //PATH
+styleSheet.href = converterLinkPath.stylesheet; //PATH
 document.head.appendChild(styleSheet);
 
 const textModule = document.getElementsByClassName('textmodule')[0];
@@ -37,7 +41,7 @@ const binaryModule = document.getElementsByClassName('binarymodule')[0];
 
 //data to help popualte background titles in modules
 const moduleArray = [textModule, asciiModule, binaryModule];
-const moduleImg = ['img/text.svg', 'img/ascii.svg', 'img/binary.svg'] //PATH
+const moduleImg = converterLinkPath.backgroundImages //PATH
 
 //function that converts contents of text module into ascii and binary every key press
 textModule.addEventListener('keyup', (event) => {
