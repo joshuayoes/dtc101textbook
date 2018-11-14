@@ -59,6 +59,12 @@ textModule.addEventListener('keyup', (event) => {
   asciiModule.value = asciiString;
   binaryModule.value = binaryString;
 
+  //checks to see if user typed in hello world
+  let textModuleText = textModule.textContent.toLowerCase();
+  if (textModuleText == 'hello world'){
+    alert('Hello back!');
+  }
+
   //diplays background images if there is no text in text module
   replaceBackground();
 });
@@ -81,3 +87,4 @@ function replaceBackground(){
     textModule.style = 'background-image: none';
   }
 };
+
